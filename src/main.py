@@ -1,7 +1,14 @@
+import os
 import sys
 import pygame
 from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QGridLayout
 from PyQt5.QtCore import Qt
+
+
+def resource_path(relative_path) -> str:
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath('.'), relative_path)
 
 
 class ButtonWidget(QWidget):
@@ -11,7 +18,7 @@ class ButtonWidget(QWidget):
         self.init_ui()
 
     def init_ui(self) -> None:
-        buzzer_button = QPushButton('Bzzz')
+        buzzer_button = QPushButton('')
         buzzer_button.clicked.connect(self.on_click_buzz)
         buzzer_button.setStyleSheet('QPushButton{background-color: red;'
                                     '            border-radius: 50%;'
@@ -27,7 +34,7 @@ class ButtonWidget(QWidget):
     @staticmethod
     def on_click_buzz() -> None:
         pygame.mixer.init()
-        pygame.mixer.music.load("buzz.wav")
+        pygame.mixer.music.load(resource_path('buzz.wav'))
         pygame.mixer.music.play()
 
 
@@ -37,7 +44,7 @@ class PrimaryWindow(QMainWindow):
         self.app = app
         self.init_ui()
 
-    def init_ui(self):
+    def init_ui(self) -> None:
         self.setWindowTitle('Bzzz')
         button = ButtonWidget()
         self.setCentralWidget(button)
