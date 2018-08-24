@@ -8,7 +8,7 @@ block_cipher = None
 root_dir = path.join(path.abspath('.'), 'wild-python/')
 
 added_files = [
-    ( 'buzz.wav', 'buzz.wav' )
+    ( 'src/audio/*', 'audio' )
 ]
 
 a = Analysis(['src/main.py'],
@@ -37,5 +37,8 @@ exe = EXE(pyz,
           console=False )
 app = BUNDLE(exe,
              name='main.app',
-             icon=None,
+             icon='icon.icns',
+             info_plist={
+                'NSHighResolutionCapable': 'True'
+             },
              bundle_identifier=None)

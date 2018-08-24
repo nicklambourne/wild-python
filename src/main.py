@@ -34,7 +34,7 @@ class ButtonWidget(QWidget):
     @staticmethod
     def on_click_buzz() -> None:
         pygame.mixer.init()
-        pygame.mixer.music.load(resource_path('buzz.wav'))
+        pygame.mixer.music.load(resource_path('./audio/buzz.wav'))
         pygame.mixer.music.play()
 
 
