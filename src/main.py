@@ -5,12 +5,6 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QGr
 from PyQt5.QtCore import Qt
 
 
-def resource_path(relative_path) -> str:
-    if hasattr(sys, '_MEIPASS'):
-        return os.path.join(sys._MEIPASS, relative_path)
-    return os.path.join(os.path.abspath('.'), relative_path)
-
-
 class ButtonWidget(QWidget):
     def __init__(self) -> None:
         super().__init__()
