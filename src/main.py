@@ -5,6 +5,12 @@ from PyQt5.QtWidgets import QApplication, QMainWindow, QWidget, QPushButton, QGr
 from PyQt5.QtCore import Qt
 
 
+def resource_path(relative_path) -> str:
+    if hasattr(sys, '_MEIPASS'):
+        return os.path.join(sys._MEIPASS, relative_path)
+    return os.path.join(os.path.abspath('.'), relative_path)
+
+
 class ButtonWidget(QWidget):
     def __init__(self) -> None:
         super().__init__()
@@ -28,7 +34,7 @@ class ButtonWidget(QWidget):
     @staticmethod
     def on_click_buzz() -> None:
         pygame.mixer.init()
-        pygame.mixer.music.load(resource_path('./audio/buzz.wav'))
+        pygame.mixer.music.load(resource_path('audio/buzz.wav'))
         pygame.mixer.music.play()
 
 
